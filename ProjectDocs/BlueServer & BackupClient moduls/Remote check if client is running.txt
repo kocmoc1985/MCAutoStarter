@@ -1,0 +1,8 @@
+
+****This functionality is implemented in Moduls.package -> OtherInstanceRunning.class
+
+Use ServerAdmin for that purpose:
+
+1. Use "port ping" option in ServerAdmin (port 5555)
+2. If it says that port is open it means that the program is running, also the backupClient will send a confirning message which
+the ServerAdmin diplays

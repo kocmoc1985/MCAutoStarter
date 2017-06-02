@@ -1,0 +1,3 @@
+console = monitor consol only no matter how many sessions are running
+monitoroff10 = dont monitor MCControl at all launches progs from MC10 folder
+monitoroff20 = dont monitor MCControl launches progs from MC20 folder

@@ -1,0 +1,5 @@
+# If The programm was not started automaticly:
+
+	1.To launch on line20: if MCControl is running on line10, launch without args
+	2.To launch on line10: use Astart with monitor line 10 only.cmd or launch with "console" arg
+	3.If MCControl on line10 is not running run without args/normally in the line10/console session

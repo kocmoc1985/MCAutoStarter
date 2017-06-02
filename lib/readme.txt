@@ -1,0 +1,1 @@
+1. "jna.jar" is used by "WindowCloser.class" which uses java native

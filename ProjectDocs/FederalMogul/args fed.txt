@@ -1,0 +1,3 @@
+off = monitoring of MCControl off
+sessions = Just to show number of sessions currently running
+forcemonitor = Start with MCControl.exe monitor on regardless number off session

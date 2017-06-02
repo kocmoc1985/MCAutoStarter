@@ -1,0 +1,1 @@
+#off - dont monitor MCControl.exe

@@ -1,0 +1,6 @@
+1. OBS! Note that this modul uses "jna.jar" library as it uses "java native"
+
+2. OBS! OBS! Whan it searches for windows the tray icons are also considered as "windows" - this causes
+sometimes problems as it was on Federal Mogul -> the driver had an icon in tray which had the same name
+as the error window which it shown. So the "WindowCloser" modul couldn't destinguish between the "tray window" 
+and the "error message"

@@ -1,0 +1,5 @@
+[INFO]
+
+No! "BlueServer" modul is not only for backup but it also has modul connected tex. for service monitoring!
+
+===========================================================

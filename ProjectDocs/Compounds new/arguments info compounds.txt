@@ -1,0 +1,1 @@
+monitoroff10 = Control monitor off both for Line 10 & 20 (OBS "monitoroff10" is not a misspelling!!)
