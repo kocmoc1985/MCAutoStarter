@@ -7,6 +7,7 @@ package mcautostarter;
 import supplementary.HelpM;
 import Moduls.FileCleaner;
 import Moduls.SimpleLogger;
+import Moduls.WindowCloser;
 import java.awt.AWTException;
 import java.awt.Image;
 import java.awt.MenuItem;
@@ -287,7 +288,9 @@ public final class autostarterFederals implements Runnable {
                 trayIcon.setToolTip("MCControl was not running.." + HelpM.get_proper_date_and_time_default_format());
             }
 
+                
             if (press_away_error_msgs) {
+                thread_sleep_n(Integer.parseInt("10000"));//#
                 HelpM.press_away_errormessages(20);
             }
 
