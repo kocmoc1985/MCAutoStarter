@@ -7,7 +7,6 @@ package mcautostarter;
 import supplementary.HelpM;
 import Moduls.FileCleaner;
 import Moduls.SimpleLogger;
-import Moduls.WindowCloser;
 import java.awt.AWTException;
 import java.awt.Image;
 import java.awt.MenuItem;
@@ -41,9 +40,8 @@ public final class autostarterFederals implements Runnable {
     private String edit_param_launch_path = "";
     private String export_launch_path = "";
     private options op;
-    private MenuItem openBrowser;
-    private MenuItem openEditor;
-    private MenuItem openExport;
+    private MenuItem unloadDrivers;
+    private MenuItem loadDrivers;
     private MenuItem optionsx;
     int nrSessions = 0;
     private Properties props;
@@ -58,6 +56,7 @@ public final class autostarterFederals implements Runnable {
     private String driver_restart_on;
     private String wait_after_driver_restart_millis;
     private String control_check_refresh_rate;
+    private String path_to_run_driver;
     private String driver_to_kill_1;
     private String driver_to_kill_2;
     private String path_to_mccontrol_log;
@@ -68,6 +67,9 @@ public final class autostarterFederals implements Runnable {
     private final static String LOG_MAIN = "main_log.txt";
     //================================================================
     private boolean FIRST_TIME = true;
+    
+    private String LOG_FILE = "starter_fed.log";
+    
     /**
      * START NORMALY WITH SESSION CHECK
      */
@@ -150,6 +152,7 @@ public final class autostarterFederals implements Runnable {
         driver_restart_on = props.getProperty("driver_restart_on", "false");
         wait_after_driver_restart_millis = props.getProperty("wait_after_driver_restart_millis");
         control_check_refresh_rate = props.getProperty("control_check_refresh_rate");
+        path_to_run_driver = props.getProperty("path_to_run_driver");
         driver_to_kill_1 = props.getProperty("driver_to_kill_1");
         driver_to_kill_2 = props.getProperty("driver_to_kill_2");
         path_to_mccontrol_log = props.getProperty("path_to_mccontrol_log", "");// For the function which checks the mixcont.log done by jura....
@@ -195,36 +198,25 @@ public final class autostarterFederals implements Runnable {
             ActionListener actionListener = new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (e.getSource() == openBrowser) {
-
-                        run_application(mc_browser_launch_path);
-
-                    } else if (e.getSource() == openEditor) {
-
-                        run_application(edit_param_launch_path);
-
-                    } else if (e.getSource() == openExport) {
-
-                        run_application(export_launch_path);
-
-                    } else if (e.getSource() == optionsx) {
+                    if (e.getSource() == unloadDrivers) {
+                        killDrivers(2);
+                    }else if (e.getSource() == loadDrivers) {
+                        run_application(path_to_run_driver);
+                    }  else if (e.getSource() == optionsx) {
                         op.makeVisible();
                     }
                 }
             };
 
             popup = new PopupMenu();
-            openBrowser = new MenuItem("Browser");
-            openEditor = new MenuItem("Editor");
-            openExport = new MenuItem("Export");
+            loadDrivers = new MenuItem("Load drivers");
+            unloadDrivers = new MenuItem("Unload drivers");
             optionsx = new MenuItem("Options");
-            openBrowser.addActionListener(actionListener);
-            openEditor.addActionListener(actionListener);
-            openExport.addActionListener(actionListener);
+            loadDrivers.addActionListener(actionListener);
+            unloadDrivers.addActionListener(actionListener);
             optionsx.addActionListener(actionListener);
-            popup.add(openBrowser);
-            popup.add(openEditor);
-            popup.add(openExport);
+            popup.add(loadDrivers);
+            popup.add(unloadDrivers);
             popup.add(optionsx);
 
             trayIcon = new TrayIcon(image, "MCWatch", popup);
@@ -276,8 +268,10 @@ public final class autostarterFederals implements Runnable {
 
             } else {
                 //
-                if (driver_restart_on.equals("true") && FIRST_TIME == false) {//#
+                if (driver_restart_on.equals("true") ) {//#&& FIRST_TIME == false
                     killDrivers(2);
+                    thread_sleep_n(Integer.parseInt(wait_after_driver_restart_millis));
+                    run_application(path_to_run_driver);
                     thread_sleep_n(Integer.parseInt(wait_after_driver_restart_millis));//#
                 }
                 //
@@ -289,10 +283,10 @@ public final class autostarterFederals implements Runnable {
             }
 
                 
-            if (press_away_error_msgs) {
-                thread_sleep_n(Integer.parseInt("10000"));//#
-                HelpM.press_away_errormessages(20);
-            }
+//            if (press_away_error_msgs) {
+//                thread_sleep_n(Integer.parseInt("10000"));//#
+//                HelpM.press_away_errormessages(20);
+//            }
 
             waitForRefresh();
         }

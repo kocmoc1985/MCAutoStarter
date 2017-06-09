@@ -277,7 +277,8 @@ public class HelpM {
     }
 
     /**
-     *
+     * OBS! Not working on Win Server 2012, maybe because of it's a virtual machine which requires 
+     * a physical keyboard
      * @CalledBy: StartInRightSession
      */
     public static void press_away_errormessages(int nr_attempts) {
