@@ -23,7 +23,7 @@ public class FileCleaner implements Runnable {
     private String sql_db_backup_path = "";
     private String monitor_sql_db_backup = "";
     private boolean THREAD_ON = true;
-    private int CLEANER_NR;
+    private final int CLEANER_NR;
     private final static String LOGFILE = "filecleaner.log";
 
     public FileCleaner(Properties p, int file_cleaner_nr) {

@@ -58,7 +58,7 @@ public class autostarterIGT implements Runnable {
 //        new Thread(this).start();
         p = HelpM.properties_load_properties(PROPERTIES_PATH);
         new Thread(new FileCleaner(p, 1)).start();
-        new Thread(new FileCleaner(p, 2)).start();
+//        new Thread(new FileCleaner(p, 2)).start();
 //        new Thread(new ClientLogger("3389")).start();
     }
 
@@ -94,7 +94,7 @@ public class autostarterIGT implements Runnable {
             optionsx.addActionListener(actionListener);
             popup.add(optionsx);
             //
-            trayIcon = new TrayIcon(image, "MCServerTools", popup);
+            trayIcon = new TrayIcon(image, "SQL Backup cleaner", popup);
             //
             trayIcon.setImageAutoSize(true);
             trayIcon.addActionListener(actionListener);
