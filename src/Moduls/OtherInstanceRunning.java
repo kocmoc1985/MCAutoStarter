@@ -22,7 +22,7 @@ public class OtherInstanceRunning implements Runnable {
 
     private Socket socket;//used!
     private ServerSocket serverSocket;//used!
-    private int port;
+    private final int port;
     private final static String LOGFILE = "autostarter_other_instance_running_modul.log";
     private String CALLER_MODUL = "";
 
@@ -44,7 +44,7 @@ public class OtherInstanceRunning implements Runnable {
             SimpleLogger.logg(LOGFILE, "Another instance of program is running on port = " + port + ", the program will be closed");
             System.exit(0);
         } else {
-            SimpleLogger.logg(LOGFILE, "No other instances of this program detected, the program will start.");
+//            SimpleLogger.logg(LOGFILE, "No other instances of this program detected, the program will start.");
             run_server();
         }
     }
@@ -92,11 +92,11 @@ public class OtherInstanceRunning implements Runnable {
             socket = new Socket("localhost", port);
             return true;
         } catch (UnknownHostException ex) {
-            SimpleLogger.logg(LOGFILE, "[THIS IS NOT FAILURE! ]" + ex.toString());
+//            SimpleLogger.logg(LOGFILE, "[THIS IS NOT FAILURE! ]" + ex.toString());
 //            Logger.getLogger(OtherInstanceRunning.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         } catch (IOException ex) {
-            SimpleLogger.logg(LOGFILE, "[THIS IS NOT FAILURE! ]" + ex.toString());
+//            SimpleLogger.logg(LOGFILE, "[THIS IS NOT FAILURE! ]" + ex.toString());
 //            Logger.getLogger(OtherInstanceRunning.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
